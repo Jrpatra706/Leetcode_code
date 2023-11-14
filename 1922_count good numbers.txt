@@ -1,0 +1,21 @@
+class Solution {
+    long mod =1000000007;
+    public int countGoodNumbers(long n) {
+        long odd = n/2;
+        long even = n/2 + n%2;
+        long ans = (power(4,odd)*power(5,even))%mod;
+        return (int)ans;
+    }
+    public long power(long x,long y){
+        if(y==0) return 1;
+        long res = power(x,y/2);
+        res *= res;
+        res %= mod;
+
+        if(y%2 != 0){
+            res *=x;
+            res %=mod;
+        }
+        return res;
+    }
+}

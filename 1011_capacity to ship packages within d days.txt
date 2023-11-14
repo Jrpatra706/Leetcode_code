@@ -1,0 +1,27 @@
+public int shipWithinDays(int[] weights, int days) {
+        int hi=0,lo=Integer.MIN_VALUE;
+        for(int i=0;i<weights.length;i++){
+            hi += weights[i];
+            if(weights[i] > lo) lo = weights[i];
+        }
+
+        while(lo<=hi){
+            int mid = (lo+hi)/2;
+            int dcnt = daysCount(weights,mid);
+            
+            if(dcnt <= days) hi=mid-1;
+            else lo = mid+1;
+        }
+        return lo;
+    }
+    private int daysCount(int []weight,int mid){
+        int cnt =0,sum =0;
+        for(int i=0;i<weight.length;i++){
+            sum += weight[i];
+            if(sum > mid){
+                cnt++;
+                sum = weight[i];
+            }
+        }
+        return cnt+1;
+    }

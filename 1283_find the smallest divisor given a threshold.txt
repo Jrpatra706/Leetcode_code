@@ -1,0 +1,22 @@
+public int smallestDivisor(int[] nums, int threshold) {
+        Arrays.sort(nums);
+        int lo =1,hi= nums[nums.length-1];
+        int ans = hi;
+        while(lo<=hi){
+            int mid = (lo+hi)/2;
+            int sum = summ(nums,mid);
+            if(sum <= threshold && mid<ans){
+                ans = mid;
+                hi = mid-1;
+            }
+            else lo=mid+1;
+        }
+        return ans;
+    }
+    private int summ(int [] nums , int div){
+        int sum =0;
+        for(int i=0;i<nums.length;i++){
+            sum += Math.ceil((double)nums[i]/(double)div);
+        }
+        return sum;
+    }

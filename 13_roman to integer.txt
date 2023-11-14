@@ -1,0 +1,23 @@
+ public int romanToInt(String s) {
+        int ans =0,val1=0,val2=0;
+        for(int i=0;i<s.length()-1;i++){
+            val1 = checkVal(s.charAt(i));
+            val2 = checkVal(s.charAt(i+1));
+            if(val2>val1) ans = ans -val1;
+            else if(val1>=val2) ans += val1;
+        }
+        val1 = checkVal(s.charAt(s.length()-1));
+        ans += val1;
+        return ans;
+    }
+    private int checkVal(char symbol ){
+        int val1=0;
+        if(symbol == 'I') val1=1;
+        if(symbol == 'V') val1=5;
+        if(symbol == 'X') val1=10;
+        if(symbol == 'L') val1=50;
+        if(symbol == 'C') val1=100;
+        if(symbol == 'D') val1=500;
+        if(symbol == 'M') val1=1000;
+        return val1;
+    }

@@ -1,0 +1,30 @@
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode cnter1 = headA;
+        ListNode cnter2 = headB;
+        int cnt1=0,cnt2=0;
+        while(cnter1 != null || cnter2 != null){
+            if(cnter1 != null){
+                cnt1++;
+                cnter1 = cnter1.next;
+            }
+            if(cnter2 != null){
+                cnt2++;
+                cnter2 = cnter2.next;
+            }
+        }
+       
+        if(cnt1 > cnt2){
+            for(int i=0;i<(cnt1-cnt2);i++)
+                headA = headA.next;
+        }
+        else{
+            for(int j=0;j<(cnt2-cnt1);j++)
+                headB = headB.next;
+        }
+        while(headA != null ){
+            if(headA == headB) return headA;
+            headA = headA.next;
+            headB = headB.next;
+        }
+        return headA;
+    }

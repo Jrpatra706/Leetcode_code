@@ -1,0 +1,28 @@
+public int trap(int[] height) {
+        int left=height[0];
+        int right=height[0];
+        int ans =0;
+        int []premax=new int[height.length];
+        int []sufmax=new int[height.length];
+        premax[0]=height[0];
+        sufmax[height.length-1]=height[height.length-1];
+        for(int i=1;i<height.length;i++){
+            if(height[i]>premax[i-1])
+                premax[i]=height[i];
+            else
+                premax[i]=premax[i-1];
+        }
+        for(int i=height.length-2;i>=0;i--){
+            if(height[i]>sufmax[i+1])
+                sufmax[i]=height[i];
+            else
+                sufmax[i]=sufmax[i+1];
+        }
+        for(int i=1;i<height.length-1;i++){
+            left=premax[i];
+            right=sufmax[i];
+            int temp=(Math.min(left,right) - height[i]);
+            if(temp>0) ans+=temp;
+        }
+        return ans;
+    }

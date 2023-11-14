@@ -1,0 +1,28 @@
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head.next == null) return null;
+        if(head.next.next == null){
+            if(n==1){
+                head.next = null;
+                return head;
+            }
+            else if(n==2){
+                head = head.next;
+                return head;
+            }
+        }
+        ListNode counter = head;
+        ListNode connect = head;
+        int cnt=1;
+        while(counter.next != null){
+            cnt++;
+            counter = counter.next;
+        }
+        if(n==cnt) head =head.next;
+        int mark =1;
+        while(mark < (cnt-n)){
+            connect = connect.next;
+            mark++;
+        }
+        connect.next = connect.next.next;
+        return head;
+    }

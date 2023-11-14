@@ -1,0 +1,14 @@
+public int[] nextGreaterElements(int[] nums) {
+        Stack<Integer> st = new Stack<>();
+        for(int i=nums.length-1;i>=0;i--){
+            st.push(nums[i]);
+        }
+        for(int j=nums.length-1;j>=0;j--){
+            int el = nums[j];
+            while(!st.empty() && st.peek()<=el)
+                st.pop();
+            nums[j] = st.empty()?-1:st.peek();
+            st.push(el);
+        }
+        return nums;
+    }

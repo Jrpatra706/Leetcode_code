@@ -1,0 +1,31 @@
+public boolean isPalindrome(ListNode head) {
+        ListNode counter = head;
+        int n =0;
+        while(counter != null){
+            n++;
+            counter = counter.next;
+        }
+        int mid = n/2;
+        ListNode pt = head;
+        if(n%2 ==0){
+            for(int i=0;i<n/2;i++)
+                pt = pt.next;
+        }
+        if(n%2 != 0){
+            for(int j=0;j<(n/2)+1;j++)
+                pt = pt.next;
+        }
+        ListNode check = head;
+
+        while(mid >0){
+            for(int k=1;k<mid;k++)
+                check = check.next;
+            if(pt.val == check.val){
+                check = head;
+                pt = pt.next;
+                mid--;
+            }
+            else return false;
+        }
+        return true;
+    }

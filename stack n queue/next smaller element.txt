@@ -1,0 +1,20 @@
+public static void immediateSmaller(int []a) {
+        // Write your code here.
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i<a.length;i++){
+            st.push(a[i]);
+        }
+        for(int i=a.length-2;i>=0;i--){
+            int el = a[i];
+            if(el>st.peek()){
+                a[i]=st.peek();
+                st.pop();
+            }
+            else{
+                a[i]=-1;
+                st.pop();
+            }
+        }
+        a[a.length-1]=-1;
+        
+    }

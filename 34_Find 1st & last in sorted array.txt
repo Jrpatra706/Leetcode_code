@@ -1,0 +1,49 @@
+class Solution {
+    // lower
+    private int lowerBound(int []arr, int x) {
+        // Write your code here
+        int ans=arr.length;
+        int lo=0,hi=arr.length-1;
+        while(lo<=hi){
+            int mid=(lo+hi)/2;
+            if(arr[mid]>=x ){
+                ans=mid;
+                hi=mid-1;
+            } 
+            else{
+                lo=mid+1;
+            }
+        }
+        return ans;
+    }
+    // upper
+    private int upperBound(int []arr, int x){
+        // Write your code here.
+        int ans=arr.length;
+        int lo=0,hi=arr.length-1;
+        while(lo<=hi){
+            int mid=(lo+hi)/2;
+            if(arr[mid]>x){
+                ans=mid;
+                hi=mid-1;
+            }
+            else{
+                 lo=mid+1;
+            }
+        }
+        return ans;
+    }
+    public int[] searchRange(int[] nums, int target) {
+       int arr[]=new int[2];
+       int lb= lowerBound(nums,target);
+       if(lb==nums.length || nums[lb] != target){
+           arr[0]=-1;
+           arr[1]=-1;
+       }
+       else{
+           arr[0]=lb;
+           arr[1]=upperBound(nums,target)-1;
+       }
+       return arr;
+    }
+}
